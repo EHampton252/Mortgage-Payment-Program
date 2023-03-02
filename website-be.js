@@ -5,16 +5,13 @@ var inputRate = document.getElementById('input-rate');
 var createPayPlan = document.getElementById('create-payment-plan');
 // Add an event listener to the button
 createPayPlan.addEventListener('click', function () {
-    var numPayments = parseInt(inputPeriod.value) * 12;
+    var numPayments = parseInt(inputPeriod.value);
     var principal = parseInt(inputAmount.value);
     var interest = parseInt(inputRate.value) / 1200;
     // Get the table body and clear any existing rows
     var tableBody = document.querySelector('#payment-schedule tbody');
     if (tableBody !== null) {
         tableBody.innerHTML = '';
-        // Init variables to track principal paid, interest paid, 
-        // principal remaining, and total monthly payment
-        // Should be referenced in for loop and changed as the loop progresses
         // Calculate monthly payments
         var payment = void 0;
         var neum = void 0;
@@ -22,7 +19,7 @@ createPayPlan.addEventListener('click', function () {
         neum = interest * Math.pow((1 + interest), (numPayments));
         denom = Math.pow((1 + interest), (numPayments)) - 1;
         payment = principal * (neum / denom);
-        // Variable to track outstanding loan balance, principal payment, 
+        // Variables to track outstanding loan balance, principal payment, interest payment, and year to date totals
         var OLB = principal;
         var prinPay = void 0;
         var intPay = void 0;
