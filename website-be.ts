@@ -35,7 +35,6 @@ createPayPlan.addEventListener('click', () => {
     let ytdInterest: number = 0;
     let ytdPayments: number = 0;
 
-
     // Loop through the number of payments and create a new row for each one
     for (let i = 1; i <= numPayments; i++) {
       // Calculate each row
