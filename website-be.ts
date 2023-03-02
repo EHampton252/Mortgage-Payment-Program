@@ -6,7 +6,7 @@ const createPayPlan = document.getElementById('create-payment-plan') as HTMLButt
 
 // Add an event listener to the button
 createPayPlan.addEventListener('click', () => {
-  const numPayments = parseInt(inputPeriod.value) * 12;
+  const numPayments = parseInt(inputPeriod.value);
   const principal = parseInt(inputAmount.value);
   const interest: number = parseInt(inputRate.value)/1200;
 
@@ -15,9 +15,6 @@ createPayPlan.addEventListener('click', () => {
   if (tableBody !== null) {
     tableBody.innerHTML = '';
 
-    // Init variables to track principal paid, interest paid, 
-    // principal remaining, and total monthly payment
-    // Should be referenced in for loop and changed as the loop progresses
     // Calculate monthly payments
     let payment: number;
     let neum: number;
@@ -27,14 +24,13 @@ createPayPlan.addEventListener('click', () => {
     denom = Math.pow((1+interest), (numPayments)) - 1;
     payment = principal * (neum/denom);
 
-    // Variable to track outstanding loan balance, principal payment, 
+    // Variables to track outstanding loan balance, principal payment, interest payment, and year to date totals
     let OLB: number = principal;
     let prinPay: number;
     let intPay: number;
     let ytdPrincipal: number = 0;
     let ytdInterest: number = 0;
     let ytdPayments: number = 0;
-
 
     // Loop through the number of payments and create a new row for each one
     for (let i = 1; i <= numPayments; i++) {
